@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements Runnable, OnSeekBarChangeListener {
 	private Socket soc_serv;
 
-	private final String SERVER_IP = "192.168.1.1";
+	private final String SERVER_NAME = "piboat";
 	private final int SERVER_PORT = 4000;
 
 	private int motor1_speed;
@@ -120,13 +120,12 @@ public class MainActivity extends Activity implements Runnable, OnSeekBarChangeL
 	public void run() {
         EditText et = (EditText) findViewById(R.id.editText1);
         TextView tv = (TextView) findViewById(R.id.textView1);
-        et.setText("connection");
+        tv.setText("connection");
         
         try {
-            InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
-            soc_serv = new Socket(serverAddr, SERVER_PORT);
+            soc_serv = new Socket(SERVER_NAME, SERVER_PORT);
             
-            et.setText("connected");
+            tv.setText("connected");
             
             //while(true) Thread.currentThread().wait(10);
         } catch (UnknownHostException e) {
